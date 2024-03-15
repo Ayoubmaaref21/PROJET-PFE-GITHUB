@@ -1,8 +1,9 @@
 @use '../../../../shared/assets/styles/abstracts/mixins' as *;
 .card-balance {
   position: relative;
-  width: 25rem;
-  height: 30rem;
+  width: 20rem;
+  height: 25rem;
+  margin: 2rem auto;
   @include GlassEffect();
   padding: 1rem;
   @include Flex(column, start);
