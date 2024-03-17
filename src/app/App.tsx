@@ -16,6 +16,7 @@ const App = () => {
       <Helmet>
         <title>Welcome - Github code reviewer</title>
       </Helmet>
+      
       <QueryClientProvider client={queryClient}>{renderRoutes(routes)}</QueryClientProvider>
     </div>
   )

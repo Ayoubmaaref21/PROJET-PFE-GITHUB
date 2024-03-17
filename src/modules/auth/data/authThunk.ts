@@ -9,6 +9,7 @@ export const login = createAsyncThunk('auth/login', async (_, { rejectWithValue 
     const response = await supabase.auth.getUser()
     if (!response.error) {
       return response.data
+
     }
 
     throw new Error(response?.error?.message)

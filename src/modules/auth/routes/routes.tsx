@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import GuestLayout from '@src/modules/shared/layout/GuestLayout/GuestLayout'
 import UniverseWrapper from '@src/modules/shared/layout/UniverseWrapper'
 import { Fragment, lazy } from 'react'
 import { RouteProps } from 'react-router-dom'
@@ -22,6 +21,8 @@ const routes: RouteConfig[] = [
     component: lazy(() => import('../features/Login/Login')),
     layout: (props: any) => <UniverseWrapper {...props} />,
   },
+ 
+  
 ]
 
 export default routes

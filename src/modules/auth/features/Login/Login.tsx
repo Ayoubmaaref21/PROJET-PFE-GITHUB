@@ -1,20 +1,34 @@
 import GithubIcon from '@src/modules/shared/assets/icons/github'
+import Canvas from '@src/modules/shared/components/Canvas/Canvas'
 import CardBalance from '@src/modules/shared/components/Cards/Card-BALANCE/Card-balance'
-import UniverseWrapper from '@src/modules/shared/layout/UniverseWrapper'
+import { useAppDispatch } from '@src/modules/shared/store'
+import { supabase } from '@src/modules/shared/utils/supabase'
+import { login } from '../../data/authThunk'
+
 
 const Login = () => {
+  const dispatch = useAppDispatch()
   async function signInWithGithub() {
-    console.log('hello ')
+    supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+        redirectTo: `home page url /`,
+        
+      },
+    })
+    dispatch(login())
   }
 
   return (
+    <>
+     <Canvas/>
     <CardBalance>
       <div className="login-module">
         <div className="login-module__card">
           <div className="login-module__card__header">
             <p className="login-module__card__header__title">Welcome</p>
             <p className="login-module__card__header__description">
-              Login via your Github account to get started with our app{' '}
+              Login via your Github account to get started with our app
             </p>
           </div>
           <div className="login-module__card__footer">
@@ -24,8 +38,11 @@ const Login = () => {
             </button>
           </div>
         </div>
+      
       </div>
     </CardBalance>
+    </>
+   
   )
 }
 
