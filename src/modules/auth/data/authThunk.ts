@@ -8,6 +8,7 @@ export const login = createAsyncThunk('auth/login', async (_, { rejectWithValue 
   try {
     const response = await supabase.auth.getUser()
     if (!response.error) {
+      message.success('Sign in successfuly')
       return response.data
 
     }

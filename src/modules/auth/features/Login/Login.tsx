@@ -1,22 +1,21 @@
 import GithubIcon from '@src/modules/shared/assets/icons/github'
 import Canvas from '@src/modules/shared/components/Canvas/Canvas'
 import CardBalance from '@src/modules/shared/components/Cards/Card-BALANCE/Card-balance'
-import { useAppDispatch } from '@src/modules/shared/store'
 import { supabase } from '@src/modules/shared/utils/supabase'
-import { login } from '../../data/authThunk'
+import { PATH } from '../../routes/paths'
 
 
 const Login = () => {
-  const dispatch = useAppDispatch()
+  const location =window.location
   async function signInWithGithub() {
     supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: `home page url /`,
+        redirectTo: `${location.origin}${PATH.LOGIN}`,
         
       },
     })
-    dispatch(login())
+
   }
 
   return (

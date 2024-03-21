@@ -13,7 +13,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         <Header />
         <Stars />
         {children}
-        {/* <Canvas />  */}
+        <Canvas/>  
       </div>
     
   )
