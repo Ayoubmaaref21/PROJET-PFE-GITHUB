@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Fragment, lazy } from 'react'
 import { RouteProps } from 'react-router-dom'
+import UniverseWrapper from '../layout/UniverseWrapper'
 
 type RouteConfig = {
   exact: boolean | null
@@ -15,6 +16,7 @@ const routes: RouteConfig[] = [
     exact: true,
     path: '*',
     component: lazy(() => import('../features/NotFound/NotFound')),
+    layout: (props: any) => <UniverseWrapper {...props} />,
   },
 ]
 

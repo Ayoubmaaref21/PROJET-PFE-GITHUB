@@ -1,5 +1,4 @@
 
-import CardSkew from "../shared/components/Cards/Cards-SKEW/Card-skew";
 import MainLayout from "../shared/layout/MainLayout/MainLayout";
 
 export default function Repo(){
@@ -7,10 +6,7 @@ export default function Repo(){
         <>
      
         <MainLayout>
-          
-        <CardSkew>
-           
-        </CardSkew>
+         
         </MainLayout>
         </>
     )

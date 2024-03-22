@@ -6,14 +6,13 @@ import { PATH } from '../../routes/paths'
 
 
 const Login = () => {
-  const location =window.location
+  const location = window.location
   async function signInWithGithub() {
     supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
         redirectTo: `${location.origin}${PATH.LOGIN}`,
-        
-      },
+        },
     })
 
   }
