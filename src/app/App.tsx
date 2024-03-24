@@ -16,18 +16,19 @@ const App = () => {
   const theme = useAppSelector((state) => state.theme.mode)
   const dispatch=useAppDispatch()
   const navigate=useNavigate()
-  const location = window.location
+  const location = window.location.pathname
   const isAuthenticated=useAppSelector((state)=>state.auth.isAuthenticated)
   useEffect(()=>{
     dispatch(login())
    
-    if( location.pathname === '/' && !isAuthenticated  ){
-        navigate(PATH.LOGIN)
+    if( location === '/' || !location  ){
+      if(isAuthenticated)
+        navigate(PATH.REPO)
+        else navigate(PATH.LOGIN)
     }
-    else if(location.pathname === '/' && isAuthenticated)
-       {navigate(PATH.REPO)}
+  
    
-  },[])
+  },[isAuthenticated,location])
 
   return (
     <div id={theme}>
@@ -36,6 +37,7 @@ const App = () => {
       </Helmet>
       
       <QueryClientProvider client={queryClient}>{renderRoutes(routes)}</QueryClientProvider>
+      
     </div>
   )
 }

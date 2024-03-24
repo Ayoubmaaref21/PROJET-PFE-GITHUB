@@ -34,10 +34,11 @@ axiosInstance.interceptors.response.use(
     if (error?.response?.status === 401 && !previousRequest?.sent) {
       previousRequest.sent = true
       try {
-        const { refresh_token } = getTokens()
+        const tokens = getTokens()
+        console.log(tokens)
         const response = await axios.get(baseURL + '/api/auth/refresh', {
           headers: {
-            Authorization: `Bearer ${refresh_token}`,
+            Authorization: `Bearer ${tokens}`,
           },
         })
 

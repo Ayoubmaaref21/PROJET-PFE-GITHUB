@@ -3,5 +3,5 @@ export const PATH = {
   LOGIN: '/login',
   REGISTER: '/register',
   HOME: '/home',
-  REPO:'/repo'
+  REPO:'/repositories'
 }

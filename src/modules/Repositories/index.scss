@@ -1,0 +1,41 @@
+.repositories
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+   
+&__card{
+    // color: white;
+    gap: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    width: 10rem;
+    justify-content: center;
+    align-items: center;
+  
+   
+&__name{
+    
+    color: white;
+    text-align: center;
+    
+    
+}
+&__visibility{
+   background: linear-gradient(0.45turn, black,black, blue);
+   padding: 0.1rem 1rem;
+   border-radius: 1rem;
+    text-align: center;
+    width: fit-content;
+    display: flex;
+    justify-content: end;
+    margin-left: 7rem;
+&__type{
+    color: white;
+    font-size: 0.5rem;
+}
+}
+}
+}

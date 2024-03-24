@@ -1,6 +1,6 @@
 @use '../../../shared/assets/styles/abstracts/mixins' as *;
 .main-layout {
-  height: 100vh;
+  height: 100%;
   @include Flex(column, start);
 }
 

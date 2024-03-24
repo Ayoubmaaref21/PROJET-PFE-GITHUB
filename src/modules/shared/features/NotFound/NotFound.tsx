@@ -1,5 +1,6 @@
 import { PATH } from '@src/modules/auth/routes/paths'
 import { useNavigate } from 'react-router-dom'
+import Canvas from '../../components/Canvas/Canvas'
 import { useAppSelector } from '../../store'
 import '../NotFound/_NotFound.scss'
 import astronaut from "./assets/astronaut.svg"
@@ -11,6 +12,7 @@ const NotFound = () => {
   }
   return (
     <>
+    <Canvas/>
     <nav className="navbar">
       404 NOT FOUND 🚀
      
@@ -24,7 +26,7 @@ const NotFound = () => {
           The page you are looking for might be removed or is temporally
           unavailable
         </p>
-        <button className="button" onClick={()=>handleclick()}>GO BACK HOME</button>
+        <button className="button" onClick={()=>handleclick()}>TAKE ME BACK</button>
       </div>
     </main>
 
