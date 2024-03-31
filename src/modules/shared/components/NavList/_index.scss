@@ -2,6 +2,7 @@
 .nav-section {
   @include Flex(column, start, start);
   gap: 0.5rem;
+
   align-self: flex-start;
   width: 100%;
   padding-top: 2rem;
@@ -28,6 +29,7 @@
       }
       &--active {
         opacity: 0.5;
+        font-weight: 900;
         &:hover {
           text-decoration: none;
         }

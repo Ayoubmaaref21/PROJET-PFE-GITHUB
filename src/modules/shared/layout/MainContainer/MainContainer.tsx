@@ -1,7 +1,5 @@
-import { CSSProperties, ReactElement, ReactNode } from 'react'
+import { CSSProperties, ReactElement } from 'react'
 import NavList, { INavList } from '../../components/NavList'
-import ScrollContainer from '../../components/ScrollContainer'
-import Stars from '../../components/Stars'
 
 export interface IMainContainer {
   children: ReactElement | ReactElement[]
@@ -13,7 +11,7 @@ export default function MainContainer({ children, linkProps, style }: IMainConta
     <div className="main-container" style={{ ...style }}>
       
       <NavList {...linkProps} />
-      <ScrollContainer>{children}</ScrollContainer>
+      {children}
     </div>
   )
 }

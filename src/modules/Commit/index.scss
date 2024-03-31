@@ -1,0 +1,12 @@
+.one-commit-container{
+   
+    &__head{
+        width: fit-content;
+        &__title{
+            color: white;
+            background-color: yellowgreen;
+            padding: 0.2rem 0.5rem;
+        }
+        
+    }
+}

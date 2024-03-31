@@ -1,5 +1,6 @@
 
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { PATH } from "../auth/routes/paths";
 import "../Repositories/index.scss";
 import CardSkew from "../shared/components/Cards/Cards-SKEW/Card-skew";
@@ -11,6 +12,7 @@ import { fetchGitHubRepo } from "../shared/store/Queries/Repositories";
 
 export default function Repo(){
    
+   
     const {data: repositories,isLoading}=useQuery({
       queryFn:()=>fetchGitHubRepo(),
       
@@ -18,13 +20,17 @@ export default function Repo(){
       staleTime:Infinity,
       cacheTime:1,
     })
-    
+    const navigate=useNavigate()
+    const handlerepoclick=(repo:string)=>{
+        navigate(PATH.PULL.replace(':id',repo))
+    }
+
     return(
         <>
         
         <MainLayout>
        
-         <MainContainer  linkProps={{title:"repositories",links:[{href:PATH.REPO,name:"repositories"}]}}>
+         <MainContainer  linkProps={{title:"repoositories",links:[{href:PATH.REPO,name:"repositories"}]}}>
             { 
             isLoading? (<LoadingScreen blur  size="full"/> ) : ( 
             <div className="repositories">
@@ -34,7 +40,7 @@ export default function Repo(){
                     repositories?.map((repo:{name:string,visibility:string}, index:number)=>(
                       
                         <CardSkew autoColors={index+1}>
-                            <div className="repositories__card">
+                            <div className="repositories__card" onClick={()=>handlerepoclick(repo?.name)} >
                                 <p className="repositories__card__name">{repo?.name}</p>  
                                 <div className="repositories__card__visibility">
                                     <p className="repositories__card__visibility__type">{repo?.visibility}</p>
@@ -50,14 +56,13 @@ export default function Repo(){
                 )
                 }
             
-                
-                
-            
-             
-               
              
          </MainContainer>
         </MainLayout>
         </>
-    )
-}
+    )        
+}                
+            
+             
+               
+        
