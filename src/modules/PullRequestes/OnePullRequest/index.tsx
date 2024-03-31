@@ -42,7 +42,7 @@ export default function OnePullRequest({pull}:OnePullRequestProps){
 
                     </div>
                     <div className='OnePullRequest-container__right-part__date'>
-                        <p className='OnePullRequest-container__right-part__date__content'>Updated At:      {dayjs(pull.updated_at).format('YYYY-MM-DDHH:mm')}</p>
+                        <p className='OnePullRequest-container__right-part__date__content'>Updated At:      {dayjs(pull.updated_at).format('YYYY-MM-DD/HH:mm')}</p>
 
                     </div>
             </div> 

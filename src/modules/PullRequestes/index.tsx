@@ -54,10 +54,13 @@ interface IPullRequest{
                                 <Collapse 
                             items={pullRequests?.map((pull: IPullRequest) => ({
                               key: `${pull.number}`,
+                             
                               label: <OnePullRequest  pull={pull}/>, 
                               children: ( 
                              
-                                         <Commits  commitRef={`${pull.number}`}/> 
+                                        <Commits  commitRef={`${pull.number}`}/> 
+                                     
+                                       
                                        ),
                             
                             }))} />

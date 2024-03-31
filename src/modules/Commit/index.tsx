@@ -7,14 +7,14 @@ import '../Commit/index.scss'
 interface Commitsprops{
     commitRef:string
 }
-export default function Commits({commitRef}:Commitsprops){
+export default  function Commits({commitRef}:Commitsprops){
     const {id}=useParams()
     const {user}=useAppSelector((state)=>state.auth)
   
     const {data: commits,isLoading}=useQuery({
         queryFn:()=>fetchGitHubCommits({user:user?.user_metadata?.user_name!,repo:id!,ref:commitRef!}),
         
-        queryKey:['commits',{}],
+        queryKey:['commits',{commitRef}],
         staleTime:Infinity,
         cacheTime:1,
       })
@@ -22,6 +22,7 @@ export default function Commits({commitRef}:Commitsprops){
     interface ICommit{
         message:string
         committer:{avatar_url:string}
+        commit:{message:string,committer:{date:string} }
 
     }
      
@@ -29,21 +30,23 @@ export default function Commits({commitRef}:Commitsprops){
           
           <div className="one-commit-container">
               <div className="one-commit-container__head">
-                  <p className="one-commit-container__head__title">Commits List</p>
+                  <p className="one-commit-container__head__title">Commits List:</p>
               </div>
               {
-                  commits?.map((commit:ICommit)=>{
-
-                    <div className="one-commit-container__content">
-                  <div className="one-commit-container__content__left">
-                      <img src={commit?.committer?.avatar_url}  />
-                      <p> {commit?.message}</p>
-                  </div>
-                  {/* <div className="one-commit-container__content__right"></div>
-                    <p></p> */}
-                 </div>
-                  })
-              }
+                commits?.map((commit: ICommit) => (
+                    <div className="one-commit-container__content" > 
+                        <div className="one-commit-container__content__left">
+                            <img className="one-commit-container__content__left__avatar" src={commit?.committer?.avatar_url} alt="avatar" /> 
+                            <p className="one-commit-container__content__left__message">{commit?.commit?.message}</p>
+                           
+                        </div>
+                        <div className="one-commit-container__content__right">
+                            <p className="one-commit-container__content__right__message">{commit?.commit?.committer?.date}</p>
+                        </div>
+                    </div>
+                    
+                ))
+            }
               
 
           </div>
