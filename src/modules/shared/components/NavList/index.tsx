@@ -18,7 +18,7 @@ export default function NavList({ title, links }: INavList) {
         {links?.map((link: { href: string; name: string }) => (
           <li className="nav-section__list-navlink">
             <p
-              className={`navlink ${window.location.pathname===link.href ? 'navlink--active' : ' ' }`}
+              className={`navlink ${window.location.pathname===link.href? 'navlink--active' : ' ' }`}
               onClick={() => handelLinkClicked(link.href)}
             >
               {link.name}

@@ -1,15 +1,18 @@
 @use '../../assets/styles/abstracts/mixins' as *;
 .main-container {
-  @include Flex(column, start, center);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
   padding: 2rem;
+  gap: 1.5rem;
   
+
   // overflow: auto;
   width: 100%;
   &::-webkit-scrollbar {
     display: none;
   }
-
 }
-.wrapper{
+.wrapper {
   width: 14rem;
 }
