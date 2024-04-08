@@ -23,7 +23,7 @@ export default function  Pull(){
         staleTime:Infinity,
         cacheTime:1,
       })
-      console.log(pullRequests)
+    
       
 
 interface IPullRequest{

@@ -33,7 +33,7 @@ const App = () => {
   return (
     <div id={theme}>
       <Helmet>
-        <title>Welcome - Github code reviewer</title>
+        <title>Welcome -CodeReviewHub</title>
       </Helmet>
       
       <QueryClientProvider client={queryClient}>{renderRoutes(routes)}</QueryClientProvider>

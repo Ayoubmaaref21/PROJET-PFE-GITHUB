@@ -29,7 +29,7 @@ export default  function Commits({commitRef}:Commitsprops){
 
    const[commitSha,setcommitSha]=useState('')
    
-      console.log(commits)
+     
       const navigate=useNavigate()
      
       
@@ -57,7 +57,7 @@ export default  function Commits({commitRef}:Commitsprops){
                   <p className="one-commit-container__head__title">Commits List:</p>
               </div>
               {
-                   isLoading? (<LoadingScreen blur  size="m"/> ):( commits?.map((commit: ICommit) => (
+                   isLoading? (<LoadingScreen blur  size="s"/> ):( commits?.map((commit: ICommit) => (
                     <div className="one-commit-container__content " onClick={()=>handleCommitClick(commit.sha,commit?.commit?.message)}> 
                         <div className="one-commit-container__content__left">
                             <img className="one-commit-container__content__left__avatar" src={commit?.committer?.avatar_url} alt="avatar" /> 

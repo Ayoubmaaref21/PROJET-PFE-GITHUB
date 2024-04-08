@@ -16,7 +16,41 @@ catch(error){
 }
 
 }
+export  async function fetchOneCommitChanges(props:{
+    user:string
+    repo:string
+    ref:string
 
-// export async function fetchCommitChangedFiles(){
+}){const {user,repo,ref}=props
+try{
+    const response=await axiosInstance.get(`repos/${user}/${repo}/commits/${ref}`,{
+        headers : 
+        {Accept: 'application/vnd.github.v3.diff; charset=utf-8'}
+    })
+    return response.data
 
-// }
+}
+catch(error){
+    message.error('failed to get commit')
+}
+
+}
+
+export async function fetchOneFileContent(props:{
+    owner:string
+    repo:string
+    sha:string
+    path:string
+}){
+    const {owner,repo,sha,path}=props
+    try{
+        const response=await axiosInstance.get(`repos/${owner}/${repo}/cpmmits/${sha}?file=${path}`,{
+            headers : 
+            {Accept: 'application/vnd.github.v3.diff; charset=utf-8'}
+        })
+        return response.data
+    }catch(error){
+        message.error('Failed to fetch file content')
+    }
+   
+}
