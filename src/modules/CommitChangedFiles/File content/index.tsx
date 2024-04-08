@@ -6,7 +6,12 @@ import * as Diff2Html from 'diff2html'
 import { useParams } from "react-router-dom"
 import { useAppSelector } from "@src/modules/shared/store"
 import LoadingScreen from "@src/modules/shared/components/Loading"
-export default function FileContent(){
+import noFile from '../../shared/assets/images/folder_empty.png'
+import '../File content/index.scss'
+interface Props {
+  selectedFileIndex: number  |null;
+}
+export default function FileContent({ selectedFileIndex }: Props){
     const [htmlContent,sethmtlContent]=useState('')
     const {user}=useAppSelector((state)=>state.auth)
     const {id,ref}=useParams()
@@ -58,7 +63,7 @@ export default function FileContent(){
     
         return fileDiffs;
       }
-      useEffect(()=>{ if(changes!){const diffHtml = Diff2Html.html(  fileDiffs[2].diffContent, {
+      useEffect(()=>{ if(changes!){const diffHtml = Diff2Html.html(  fileDiffs[selectedFileIndex].diffContent, {
         inputFormat: 'diff',
         highlight: true,
         colorScheme: 'dark',
@@ -66,18 +71,39 @@ export default function FileContent(){
         drawFileList: true,
         DiffStyleType: 'char',
     })
-    sethmtlContent(diffHtml)} },[changes])
+    sethmtlContent(diffHtml)} },[selectedFileIndex])
+     
 
     
-    return(<>
-        { isLoading? (<LoadingScreen blur  size="s"/> ):(<> <div className="file-content__title">File content:</div>
-        <div className="file-content__content">  <div className="code-diff__wrapper">
-          <div className="code-diff" dangerouslySetInnerHTML={{ __html:htmlContent}} />
-          
-   </div>
-   </div></>)}
-       </>
-    
+    return(
+      <>
+      {
+  isLoading ? (
+    <LoadingScreen blur size="s" />
+  ) : (
+    <>
+      <div className="file-content__title">File content:</div>
+      {selectedFileIndex === null ? (
+        <div className="no-file-selected">
+          <img className="no-file-selected__image" src={noFile} alt="Empty folder" />
+        </div>
+      ) : (
+        <div className="file-content__content">
+          <div className="code-diff__wrapper">
+            <div
+              className="code-diff"
+              dangerouslySetInnerHTML={{ __html: htmlContent }}
+            />
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
+      </>
     )
+
+    
+  
 }
 

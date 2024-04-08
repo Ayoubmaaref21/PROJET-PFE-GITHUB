@@ -1,7 +1,7 @@
 export const styleFull = {
   background: {
     width: '100%',
-    height: '100vh',
+    height: '100%',
     position: 'absolute',
     zIndex: 999999,
     top: 0,

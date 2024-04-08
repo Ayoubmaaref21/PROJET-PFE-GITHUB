@@ -1,4 +1,5 @@
 import 'diff2html/bundles/css/diff2html.min.css';
+import { useState } from 'react';
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { PATH } from "../auth/routes/paths";
@@ -38,7 +39,7 @@ interface Ionecommit{
 
 
 
-
+const[SelectedIndex,setSelectedIndex]=useState<number | null> (null)
 
 
   
@@ -52,19 +53,21 @@ interface Ionecommit{
             
             {
                 isLoading? (<LoadingScreen blur  size="full"/> ):
-                <div className="container">
-            <div className="files-container">
+                <div className="container" >
+            <div className="files-container" >
             <div className="files-container__title">
                     <p className="files-container__title__content">Files:</p>
             </div>
             <div className="files-container__list">
-                { onecommit?.files?.map((onecommit:Ionecommit)=>(
+                { onecommit?.files?.map((onecommit:Ionecommit,index:number)=>(
          
-                        <div className="files-container__list__file"  >
-                                <p className="files-container__list__file__name" >{onecommit?.filename}</p>
+                        <div className="files-container__list__file" tabIndex={index+1} onClick={()=>setSelectedIndex(index)} >
+                                <p className="files-container__list__file__name"  >{onecommit?.filename}</p>
                                 <div className="files-container__list__file__stats">
                                         <p className="files-container__list__file__stats__added">{onecommit?.additions}</p>
                                         <p className="files-container__list__file__stats__deleted">{onecommit?.deletions}</p>
+                                        
+                                        
                                 </div>
                                 
                                 
@@ -77,7 +80,7 @@ interface Ionecommit{
 
         </div>
         <div className="file-content">
-        <FileContent  />
+        <FileContent selectedFileIndex={SelectedIndex} />
             
         </div>
             </div>
