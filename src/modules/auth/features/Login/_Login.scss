@@ -1,7 +1,8 @@
 @use '../../../shared/assets/styles/abstracts/mixins' as *;
 .login-module {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+ 
 
   @include Flex();
   @media only screen and (max-width: 475px) {
@@ -14,8 +15,8 @@
     padding: 2rem;
     width: 15rem;
     height: 20rem;
-    // position: relative;
-    // border: 1px solid black;
+    position: relative;
+    
     border-radius: 1rem;
     &__header {
       &__title {

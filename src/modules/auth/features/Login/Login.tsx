@@ -20,7 +20,8 @@ const Login = () => {
 
   return (
     <>
-     <Canvas/>
+    
+  <Canvas/>
     <CardBalance>
       <div className="login-module">
         <div className="login-module__card">

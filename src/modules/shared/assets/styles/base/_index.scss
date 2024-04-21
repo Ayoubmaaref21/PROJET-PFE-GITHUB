@@ -23,6 +23,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
   overflow-x: hidden;
+
   font-size: 107.5%;
 
   text-size-adjust: none;
@@ -37,7 +38,7 @@ html {
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: rgba(66, 66, 66, 0.2);
+    background-color: rgba(48, 48, 48, 0.2);
     border: 0px;
     background-clip: padding-box;
     border-radius: 5px;

@@ -10,39 +10,31 @@ import MainLayout from "../shared/layout/MainLayout/MainLayout";
 import { useAppSelector } from "../shared/store";
 import { fetchOneCommit } from "../shared/store/Queries/Files";
 import FileContent from "./File content";
-
-
-
-
 export default function FilesChanged(){
- 
-    const {id,ref,commits}=useParams()
-    
-    const {user}=useAppSelector((state)=>state.auth)
+ const[SelectedIndex,setSelectedIndex]=useState<number | null> (null)
+ const {id,ref,commits}=useParams()
+ const[filenom,setfilenom]=useState<null | string>(null)
 
-    
-    const {data: onecommit,isLoading}=useQuery({
+
+ const {user}=useAppSelector((state)=>state.auth)
+ const {data: onecommit,isLoading}=useQuery({
         queryFn:()=>fetchOneCommit({user:user?.user_metadata?.user_name!,repo:id!,ref:ref!}),
         
         queryKey:['onecommit',{}],
         staleTime:Infinity,
         cacheTime:1,
       })
+    
    
 
 interface Ionecommit{
     filename:string
-    
+   
         additions:number
         deletions:number
 }
 
 
-
-const[SelectedIndex,setSelectedIndex]=useState<number | null> (null)
-
-
-  
 
    
     return(
@@ -61,12 +53,13 @@ const[SelectedIndex,setSelectedIndex]=useState<number | null> (null)
             <div className="files-container__list">
                 { onecommit?.files?.map((onecommit:Ionecommit,index:number)=>(
          
-                        <div className="files-container__list__file" tabIndex={index+1} onClick={()=>setSelectedIndex(index)} >
+                        <div className="files-container__list__file" tabIndex={index+1} onClick={()=>{setSelectedIndex(index);setfilenom(onecommit?.filename)}} >
                                 <p className="files-container__list__file__name"  >{onecommit?.filename}</p>
                                 <div className="files-container__list__file__stats">
                                         <p className="files-container__list__file__stats__added">{onecommit?.additions}</p>
                                         <p className="files-container__list__file__stats__deleted">{onecommit?.deletions}</p>
-                                        
+                                       
+                                     
                                         
                                 </div>
                                 
@@ -80,12 +73,17 @@ const[SelectedIndex,setSelectedIndex]=useState<number | null> (null)
 
         </div>
         <div className="file-content">
-        <FileContent selectedFileIndex={SelectedIndex} />
-            
-        </div>
-            </div>
-            }
+        <FileContent fileName={filenom} selectedFileIndex={SelectedIndex} />
         
+   
+       
+        </div>
+        
+            </div>
+          
+           
+            }
+             
 
          </MainContainer>
         </MainLayout>

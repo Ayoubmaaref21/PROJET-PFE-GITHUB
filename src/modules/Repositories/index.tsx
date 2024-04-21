@@ -30,7 +30,7 @@ export default function Repo(){
         
         <MainLayout>
        
-         <MainContainer  linkProps={{title:"repoositories",links:[{href:PATH.REPO,name:"repositories"}]}}>
+         <MainContainer  linkProps={{title:"repositories",links:[{href:PATH.REPO,name:"repositories"}]}}>
             { 
             isLoading? (<LoadingScreen blur  size="full"/> ) : ( 
             <div className="repositories">

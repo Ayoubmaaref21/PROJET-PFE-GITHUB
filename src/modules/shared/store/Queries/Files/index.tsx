@@ -54,3 +54,18 @@ export async function fetchOneFileContent(props:{
     }
    
 }
+export async function fetchOneFileContentCode(props:{
+    owner:string
+    repo:string
+    ref:string
+    path:string
+}){
+    const {owner,repo,ref,path}=props
+    try{
+        const response=await axiosInstance.get(`repos/${owner}/${repo}/contents/${path}?ref=${ref}`)
+        return response.data
+    }catch(error){
+        message.error('Failed to fetch file content')
+    }
+   
+}

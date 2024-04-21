@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   color: white;
+  font-weight: 1000;
   flex-direction: row;
   justify-content: center;
   border: none;
@@ -17,7 +18,7 @@
     width: 18px;
     height: 18px;
     path {
-      fill: white;
+      fill: rgb(255, 255, 255);
     }
   }
   &::before {
