@@ -1,13 +1,12 @@
+import * as dayjs from 'dayjs'
+import { useState } from "react"
 import { useQuery } from "react-query"
-import { Navigate, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+import { PATH } from "../auth/routes/paths"
+import '../Commit/index.scss'
+import LoadingScreen from "../shared/components/Loading"
 import { useAppSelector } from "../shared/store"
 import { fetchGitHubCommits } from "../shared/store/Queries/Commits"
-import '../Commit/index.scss'
-import * as dayjs from 'dayjs';
-import LoadingScreen from "../shared/components/Loading"
-import { fetchOneCommit } from "../shared/store/Queries/Files"
-import { useState } from "react"
-import { PATH } from "../auth/routes/paths"
 
 interface Commitsprops{
     commitRef:string

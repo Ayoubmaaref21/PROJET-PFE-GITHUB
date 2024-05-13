@@ -1,9 +1,9 @@
 
-import StreamComponent from "@src/modules/Liama 2/components/Stream"
+import StreamComponent from "@src/modules/Chat-Gpt/components/Stream"
 import ReviewButton from "@src/modules/shared/components/Buttons/Review"
 import LoadingScreen from "@src/modules/shared/components/Loading"
 import { useAppSelector } from "@src/modules/shared/store"
-import { fetchOneCommitChanges } from "@src/modules/shared/store/Queries/Files"
+import { fetchOneCommitChanges, fetchOneFileContentCode } from "@src/modules/shared/store/Queries/Files"
 import { Modal } from "antd"
 import * as Diff2Html from 'diff2html'
 import { useEffect, useState } from "react"
@@ -17,6 +17,7 @@ interface Props {
 }
 export default function FileContent({ selectedFileIndex ,fileName}: Props){
     const [htmlContent,sethmtlContent]=useState('')
+    const [streamKey, setStreamKey] = useState(0);
     const {user}=useAppSelector((state)=>state.auth)
     const {id,ref}=useParams()
     const [popup,setPopup]=useState(false)
@@ -75,7 +76,20 @@ export default function FileContent({ selectedFileIndex ,fileName}: Props){
     })
     sethmtlContent(diffHtml)} },[selectedFileIndex])
      
+ 
 
+    const {data: file,isLoading:isFileContentLoading}=useQuery({
+        queryFn:()=>fetchOneFileContentCode({owner:user?.user_metadata?.user_name!,repo:id!,ref:ref!,path:fileName!}),
+        
+        queryKey:['file',{fileName}],
+        staleTime:Infinity,
+        cacheTime:1,
+      }) 
+      useEffect(() => {
+        setStreamKey(prevKey => prevKey + 1); 
+      }, [popup]);
+    
+ const code = file?.content ? atob(file?.content) :''
     
     return(
       <>
@@ -91,30 +105,35 @@ export default function FileContent({ selectedFileIndex ,fileName}: Props){
           <p className="no-file-selected__message">No File Selected</p>
         </div>
       ) : (
+        <>
         <div className="file-content__content">
           <div className="code-diff__wrapper">
+           
             <div
               className="code-diff"
               dangerouslySetInnerHTML={{ __html: htmlContent }}
             />
-            <div className="review-button">
-            <ReviewButton title="Review Code" onClick={handleReviewClick}/>
             </div>
+          
+          
             
             <Modal
         title={'Code Review'}
         className="editor__modal"
         visible={popup}
-        onCancel={handleCloseModal
-        }
+        onCancel={handleCloseModal}
       >
-     <StreamComponent path={fileName}/>
+
+     <StreamComponent key={streamKey} code={code}/>
       </Modal>
          
-          </div>
-        
+         
+          
         </div>
-        
+      <div className="review-button">
+      <ReviewButton title="Review Code" onClick={handleReviewClick}/>
+      </div>
+        </>
       )}
     </>
   )
