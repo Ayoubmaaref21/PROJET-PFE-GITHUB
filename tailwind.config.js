@@ -39,6 +39,7 @@ export default {
         code: 'var(--font-code)',
         grotesk: 'var(--font-grotesk)',
       },
+
       letterSpacing: {
         tagline: '.15em',
       },
