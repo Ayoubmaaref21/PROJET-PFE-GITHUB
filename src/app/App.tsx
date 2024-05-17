@@ -14,30 +14,21 @@ const App = () => {
   document.body.dir = i18n?.dir()
 
   const theme = useAppSelector((state) => state.theme.mode)
-  const dispatch=useAppDispatch()
-  const navigate=useNavigate()
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const location = window.location.pathname
-  const isAuthenticated=useAppSelector((state)=>state.auth.isAuthenticated)
-  useEffect(()=>{
+  const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated)
+  useEffect(() => {
     dispatch(login())
-   
-    if( location === '/' || !location  ){
-      if(isAuthenticated)
-        navigate(PATH.REPO)
-        else navigate(PATH.LOGIN)
-    }
-  
-   
-  },[isAuthenticated,location])
+  }, [isAuthenticated, location])
 
   return (
     <div id={theme}>
       <Helmet>
         <title>Welcome -CodeReviewHub</title>
       </Helmet>
-      
+
       <QueryClientProvider client={queryClient}>{renderRoutes(routes)}</QueryClientProvider>
-      
     </div>
   )
 }
