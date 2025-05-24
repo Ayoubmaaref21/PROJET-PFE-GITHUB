@@ -1,6 +1,5 @@
-import React from "react";
-import Section from "./Section";
-import { socials } from "../constants";
+import { socials } from '../constants'
+import Section from './Section'
 
 const Footer = () => {
   return (
@@ -24,7 +23,7 @@ const Footer = () => {
         </ul>
       </div>
     </Section>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

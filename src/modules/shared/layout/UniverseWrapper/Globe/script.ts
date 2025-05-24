@@ -202,7 +202,7 @@ export const gitHubGlobe = () => {
     y: 0,
   }
   $('#globeCanvas')
-    .on('mousedown', function (e: any) {
+    .on('mousedown', function () {
       isDragging = true
     })
     .on('mousemove', function (e: { offsetX: number; offsetY: any }) {

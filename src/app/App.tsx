@@ -1,12 +1,10 @@
 import { login } from '@src/modules/auth/data/authThunk'
-import { PATH } from '@src/modules/auth/routes/paths'
 import routes, { renderRoutes } from '@src/modules/shared/routes'
 import { useAppDispatch, useAppSelector } from '@src/modules/shared/store'
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { useNavigate } from 'react-router-dom'
 
 const App = () => {
   const queryClient = new QueryClient()
@@ -15,7 +13,6 @@ const App = () => {
 
   const theme = useAppSelector((state) => state.theme.mode)
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
   const location = window.location.pathname
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated)
   useEffect(() => {

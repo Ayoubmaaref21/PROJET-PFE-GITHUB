@@ -1,4 +1,5 @@
 function n(e: { phase: number; amplitude: number; frequency: number; offset: number }) {
+  //@ts-ignore
   this.init(e || {})
 }
 n.prototype = {
@@ -17,6 +18,7 @@ n.prototype = {
 }
 
 function Line(e: { spring: number }) {
+  //@ts-ignore
   this.init(e || {})
 }
 
@@ -26,8 +28,11 @@ Line.prototype = {
     this.friction = E.friction + 0.01 * Math.random() - 0.005
     this.nodes = []
     for (var t, n = 0; n < E.size; n++) {
+      //@ts-ignore
       t = new Node()
+      //@ts-ignore
       t.x = pos.x
+      //@ts-ignore
       t.y = pos.y
       this.nodes.push(t)
     }
@@ -35,7 +40,9 @@ Line.prototype = {
   update: function () {
     var e = this.spring,
       t = this.nodes[0]
+    //@ts-ignore
     t.vx += (pos.x - t.x) * e
+    //@ts-ignore
     t.vy += (pos.y - t.y) * e
     for (var n, i = 0, a = this.nodes.length; i < a; i++)
       (t = this.nodes[i]),
@@ -77,21 +84,28 @@ function onMousemove(e: any) {
   function o() {
     lines = []
     for (var e = 0; e < E.trails; e++)
+      //@ts-ignore
       lines.push(new Line({ spring: 0.45 + (e / E.trails) * 0.025 }))
   }
   function c(e: { touches: { pageY: any }[]; clientX: any; clientY: any }) {
     e.touches
-      ? ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY))
-      : ((pos.x = e.clientX), (pos.y = e.clientY)),
+      ? //@ts-ignore
+        ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY))
+      : //@ts-ignore
+        ((pos.x = e.clientX), (pos.y = e.clientY)),
       { passive: false }
   }
   function l(e: { touches: string | any[] }) {
+    //@ts-ignore
     1 == e.touches.length && ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY))
   }
   document.removeEventListener('mousemove', onMousemove),
     document.removeEventListener('touchstart', onMousemove),
+    //@ts-ignore
     document.addEventListener('mousemove', c),
+    //@ts-ignore
     document.addEventListener('touchmove', c),
+    //@ts-ignore
     document.addEventListener('touchstart', l),
     c(e),
     o(),
@@ -153,9 +167,11 @@ function Node(this: any) {
 }
 
 export const renderCanvas = function () {
-  ctx = document.getElementById('canvas').getContext('2d')
+  //@ts-ignore
+  ctx = document?.getElementById('canvas')?.getContext('2d')
   ctx.running = true
   ctx.frame = 1
+  //@ts-ignore
   f = new n({
     phase: Math.random() * 2 * Math.PI,
     amplitude: 85,

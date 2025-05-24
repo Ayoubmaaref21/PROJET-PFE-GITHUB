@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { ScrollParallax } from 'react-just-parallax'
-import { curve, heroBackground, heroBackground2, robot } from '../assets'
+//@ts-ignore
+import { curve, heroBackground, robot } from '../assets'
 import { heroIcons } from '../constants'
 import Generating from './Generating'
 import Notification from './Notification'

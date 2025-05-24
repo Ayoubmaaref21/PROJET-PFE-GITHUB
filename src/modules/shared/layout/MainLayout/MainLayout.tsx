@@ -1,4 +1,3 @@
-import Canvas from '../../components/Canvas/Canvas'
 import Header from '../../components/Header'
 import Stars from '../../components/Stars'
 
@@ -8,14 +7,11 @@ interface MainLayoutProps {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-   
-      <div className="main-layout">
-        <Header />
-        <Stars />
-        {children}
-        
-      </div>
-    
+    <div className="main-layout">
+      <Header />
+      <Stars />
+      {children}
+    </div>
   )
 }
 

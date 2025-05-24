@@ -3,6 +3,7 @@ import Heading from './Heading'
 import Section from './Section'
 import Tagline from './Tagline'
 import { roadmap } from '../constants'
+//@ts-ignore
 import { check2, grid, loading1 } from '../assets'
 import { Gradient } from './design/Roadmap'
 
